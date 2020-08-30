@@ -10,8 +10,7 @@ $("#frmAcceso").on('submit',function(e)
     {
         if (data!="null")
         {
-           // $(location).attr("href","escritorio2.php");    
-           bootbox.alert("Usuario y/o Password incorrectos");        
+           $(location).attr("href","escritorio.php");          
         }
         else
         {

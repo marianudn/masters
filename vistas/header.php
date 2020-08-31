@@ -215,8 +215,7 @@ if ($_SESSION['acceso']==1) {
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="usuario.php"><i class="fa fa-circle-o"></i> Profesores</a></li>
-            <li><a href="usuario.php"><i class="fa fa-circle-o"></i> Alumnos</a></li>
+            <li><a href="usuario.php"><i class="fa fa-circle-o"></i> Usuarios</a></li>
             <li><a href="permiso.php"><i class="fa fa-circle-o"></i> Permisos</a></li>
           </ul>
         </li>';

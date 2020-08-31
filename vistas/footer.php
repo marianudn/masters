@@ -1,6 +1,6 @@
   <footer class="main-footer">
     <div class="pull-right hidden-xs">
-      <b>Programacion Fiscia y Logica 
+      <b>Programacion Funcional y Logica 
     </div>
     <strong>Copyright &copy; 2020 <a target="_blank" href="https://wa.me/523322951611">Maya Mauricio Mariana Jorge</a></strong> Todo los derechos
     reservados.

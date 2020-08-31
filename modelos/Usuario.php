@@ -10,8 +10,8 @@ public function __construct(){
 }
 
 //metodo insertar regiustro
-public function insertar($nombre,$tipo_documento,$num_documento,$direccion,$telefono,$email,$cargo,$login,$clave,$imagen,$permisos){
-	$sql="INSERT INTO usuario (nombre,tipo_documento,num_documento,direccion,telefono,email,cargo,login,clave,imagen,condicion) VALUES ('$nombre','$tipo_documento','$num_documento','$direccion','$telefono','$email','$cargo','$login','$clave','$imagen','1')";
+public function insertar($nombre,$tipo_usuario,$tipo_documento,$num_documento,$direccion,$telefono,$email,$cargo,$login,$clave,$imagen,$permisos){
+	$sql="INSERT INTO usuario (nombre,tipo_usuario,tipo_documento,num_documento,direccion,telefono,email,cargo,login,clave,imagen,condicion) VALUES ('$nombre','$tipo_usuario','$tipo_documento','$num_documento','$direccion','$telefono','$email','$cargo','$login','$clave','$imagen','1')";
 	//return ejecutarConsulta($sql);
 	 $idusuarionew=ejecutarConsulta_retornarID($sql);
 	 $num_elementos=0;
@@ -27,8 +27,8 @@ public function insertar($nombre,$tipo_documento,$num_documento,$direccion,$tele
 	 return $sw;
 }
 
-public function editar($idusuario,$nombre,$tipo_documento,$num_documento,$direccion,$telefono,$email,$cargo,$login,$imagen,$permisos){
-	$sql="UPDATE usuario SET nombre='$nombre',tipo_documento='$tipo_documento',num_documento='$num_documento',direccion='$direccion',telefono='$telefono',email='$email',cargo='$cargo',login='$login',imagen='$imagen' 
+public function editar($idusuario,$nombre,$tipo_usuario,$tipo_documento,$num_documento,$direccion,$telefono,$email,$cargo,$login,$imagen,$permisos){
+	$sql="UPDATE usuario SET nombre='$nombre',tipo_usuario='$tipo_usuario',tipo_documento='$tipo_documento',num_documento='$num_documento',direccion='$direccion',telefono='$telefono',email='$email',cargo='$cargo',login='$login',imagen='$imagen' 
 	WHERE idusuario='$idusuario'";
 	 ejecutarConsulta($sql);
 
@@ -86,7 +86,7 @@ public function listarmarcados($idusuario){
 //Función para verificar el acceso al sistema
 	public function verificar($login,$clave)
     {
-    	$sql="SELECT idusuario,nombre,tipo_documento,num_documento,telefono,email,cargo,imagen,login FROM usuario WHERE login='$login' AND clave='$clave' AND condicion='1'"; 
+    	$sql="SELECT idusuario,nombre,tipo_usuario,tipo_documento,num_documento,telefono,email,cargo,imagen,login FROM usuario WHERE login='$login' AND clave='$clave' AND condicion='1'"; 
     	return ejecutarConsulta($sql);  
     }
 }

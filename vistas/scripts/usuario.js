@@ -22,6 +22,7 @@ $.post("../ajax/usuario.php?op=permisos&id=", function(r){
 //funcion limpiar
 function limpiar(){
 	$("#nombre").val("");
+	$("#tipo_usuario").val("");
     $("#num_documento").val("");
 	$("#direccion").val("");
 	$("#telefono").val("");
@@ -155,6 +156,8 @@ function mostrar(idusuario){
 			$("#claves").hide();
 			}
 			$("#nombre").val(data.nombre);
+			$("#tipo_usuario").val(data.tipo_documento);
+            $("#tipo_usuario").selectpicker('refresh');
             $("#tipo_documento").val(data.tipo_documento);
             $("#tipo_documento").selectpicker('refresh');
             $("#num_documento").val(data.num_documento);

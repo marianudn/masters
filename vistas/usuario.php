@@ -30,6 +30,7 @@ if ($_SESSION['acceso']==1) {
     <thead>
       <th>Opciones</th>
       <th>Nombre</th>
+      <th>Tipo de Usuario</th>
       <th>Identificacion</th>
       <th>Numero Documento</th>
       <th>Telefono</th>
@@ -43,6 +44,7 @@ if ($_SESSION['acceso']==1) {
     <tfoot>
       <th>Opciones</th>
       <th>Nombre</th>
+      <th>Tipo de Usuario</th>
       <th>Documento</th>
       <th>Numero Documento</th>
       <th>Telefono</th>
@@ -59,6 +61,15 @@ if ($_SESSION['acceso']==1) {
       <label for="">Nombre(*):</label>
       <input class="form-control" type="hidden" name="idusuario" id="idusuario">
       <input class="form-control" type="text" name="nombre" id="nombre" maxlength="100" placeholder="Nombre" required>
+    </div>
+    <div class="form-group col-lg-6 col-md-6 col-xs-12">
+      <label for="">Tipo de Usuario(*):</label>
+     <select name="tipo_usuario" id="tipo_usuario" class="form-control select-picker" required>
+      <option value="ADMINISTRADOR">ADMINISTRADOR</option>
+       <option value="PROFESOR">PROFESOR</option>
+       <option value="ALUMNO">ALUMNO</option>
+       
+     </select>
     </div>
     <div class="form-group col-lg-6 col-md-6 col-xs-12">
       <label for="">Tipo Documento(*):</label>

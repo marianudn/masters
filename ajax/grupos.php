@@ -34,7 +34,14 @@ switch ($_GET["op"]) {
 		break;
 
     case 'listar':
-		$rspta=$grupos->listar();
+    	if ($_SESSION['tipo_usuario']=='ADMINISTRADOR') {
+    		$rspta=$grupos->listar();
+    	}elseif ($_SESSION['tipo_usuario']=='ALUMNO'){
+    		$rspta=$grupos->listar();
+    		}elseif ($_SESSION['tipo_usuario']=='PROFESOR'){
+    		$rspta=$grupos->listar_profesor($_SESSION['nombre']);
+    		}
+		
 		$data=Array();
 
 		while ($reg=$rspta->fetch_object()) {

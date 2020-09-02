@@ -154,6 +154,7 @@ switch ($_GET["op"]) {
 			$_SESSION['imagen']=$fetch->imagen;
 			$_SESSION['login']=$fetch->login;
 			$_SESSION['cargo']=$fetch->cargo;
+			$_SESSION['tipo_usuario']=$fetch->tipo_usuario;
 
 			//obtenemos los permisos
 			$marcados = $usuario->listarmarcados($fetch->idusuario);

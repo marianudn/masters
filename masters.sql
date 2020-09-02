@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.0.1
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generaciÛn: 12-01-2020 a las 17:46:14
--- VersiÛn del servidor: 10.4.6-MariaDB
--- VersiÛn de PHP: 7.3.8
+-- Tiempo de generaci√≥n: 02-09-2020 a las 03:31:57
+-- Versi√≥n del servidor: 10.4.13-MariaDB
+-- Versi√≥n de PHP: 7.4.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -19,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `masters``
+-- Base de datos: `masters`
 --
 
 -- --------------------------------------------------------
@@ -49,6 +48,13 @@ CREATE TABLE `alumn` (
   `user_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
+--
+-- Volcado de datos para la tabla `alumn`
+--
+
+INSERT INTO `alumn` (`id`, `image`, `name`, `lastname`, `email`, `address`, `phone`, `c1_fullname`, `c1_address`, `c1_phone`, `c1_note`, `c2_fullname`, `c2_address`, `c2_phone`, `c2_note`, `is_active`, `created_at`, `user_id`) VALUES
+(28, '', 'JUAN', 'SANCHEZ ALVAREZ', 'marianasalinas88@hotmail.com', 'MELODIA 2324', '3322528678', '', '', '', '', NULL, NULL, NULL, NULL, 1, NULL, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -60,6 +66,13 @@ CREATE TABLE `alumn_team` (
   `alumn_id` int(11) NOT NULL,
   `team_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Volcado de datos para la tabla `alumn_team`
+--
+
+INSERT INTO `alumn_team` (`id`, `alumn_id`, `team_id`) VALUES
+(17, 28, 10);
 
 -- --------------------------------------------------------
 
@@ -75,6 +88,13 @@ CREATE TABLE `assistance` (
   `team_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
+--
+-- Volcado de datos para la tabla `assistance`
+--
+
+INSERT INTO `assistance` (`id`, `kind_id`, `date_at`, `alumn_id`, `team_id`) VALUES
+(14, 1, '2020-08-30', 28, 10);
+
 -- --------------------------------------------------------
 
 --
@@ -88,6 +108,13 @@ CREATE TABLE `behavior` (
   `alumn_id` int(11) NOT NULL,
   `team_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Volcado de datos para la tabla `behavior`
+--
+
+INSERT INTO `behavior` (`id`, `kind_id`, `date_at`, `alumn_id`, `team_id`) VALUES
+(4, 3, '2020-08-30', 28, 10);
 
 -- --------------------------------------------------------
 
@@ -157,7 +184,10 @@ INSERT INTO `team` (`idgrupo`, `nombre`, `favorito`, `idusuario`) VALUES
 (3, 'TERCERO DE PRIMARIA', 1, 1),
 (4, 'CUARTO DE PRIMARIA', 1, 1),
 (5, 'QUINTO DE PRIMARIA', 1, 1),
-(6, 'SEXTO DE PRIMARIA', 1, 1);
+(6, 'SEXTO DE PRIMARIA', 1, 1),
+(10, 'MATEMATICAS', 0, 1),
+(11, 'HAGANLE LA RUEDA A JUANA', 0, 4),
+(12, 'GRUPO DE CARLOS', 0, 3);
 
 -- --------------------------------------------------------
 
@@ -168,6 +198,7 @@ INSERT INTO `team` (`idgrupo`, `nombre`, `favorito`, `idusuario`) VALUES
 CREATE TABLE `usuario` (
   `idusuario` int(11) NOT NULL,
   `nombre` varchar(100) NOT NULL,
+  `tipo_usuario` varchar(13) NOT NULL,
   `tipo_documento` varchar(20) NOT NULL,
   `num_documento` varchar(20) NOT NULL,
   `direccion` varchar(70) DEFAULT NULL,
@@ -184,8 +215,12 @@ CREATE TABLE `usuario` (
 -- Volcado de datos para la tabla `usuario`
 --
 
-INSERT INTO `usuario` (`idusuario`, `nombre`, `tipo_documento`, `num_documento`, `direccion`, `telefono`, `email`, `cargo`, `login`, `clave`, `imagen`, `condicion`) VALUES
-(1, 'demo', 'DNI', '72154871', 'Calle los alpes 210', '547821', 'admin@gmail.com', 'Administrador', 'admin', '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918', '1535417472.jpg', 1);
+INSERT INTO `usuario` (`idusuario`, `nombre`, `tipo_usuario`, `tipo_documento`, `num_documento`, `direccion`, `telefono`, `email`, `cargo`, `login`, `clave`, `imagen`, `condicion`) VALUES
+(1, 'demo', 'ADMINISTRADOR', 'DNI', '72154871', 'Calle los alpes 210', '547821', 'admin@gmail.com', 'Administrador', 'admin', '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918', '1578850202.jpg', 1),
+(3, 'CARLOS', 'PROFESOR', 'IMSS', '465728269875033', '', '', '', '', 'profesor1', 'c5feadda95f15c08186641ec217bfde3ac211298f1912798610ef6532c7ffe1f', '1578849784.jpg', 1),
+(4, 'Juana Perez', 'ALUMNO', 'LICENCIA', '165728279845035', '', '', '', '', 'alumno1', 'b963c40a74d4394ec746188f800b0a25e71ae5dfafa790059a26203d99ea4e2b', '1598842418.jpg', 1),
+(9, 'Ramon Ayala', 'ADMINISTRADOR', 'RFC', 'RAAY443432TY6', 'Valle Imperial SN', '3325678954', 'ramones@gmail.com', 'Tubrother', 'admin2', '1c142b2d01aa34e9a36bde480645a57fd69e14155dacfab5a3f9257b77fdc8d8', '', 1),
+(10, 'Pilar Lopez', 'ALUMNO', 'RFC', 'PILO45345TYN3', 'Hacienda de la Vega SN', '3356432312', 'pilo@gmail.com', 'Jefa', 'alumno2', '84d1a32420eaeca1169e85ff5943773c8fe3e0a782f73759459d107a5b1827e7', '', 1);
 
 -- --------------------------------------------------------
 
@@ -206,7 +241,18 @@ CREATE TABLE `usuario_permiso` (
 INSERT INTO `usuario_permiso` (`idusuario_permiso`, `idusuario`, `idpermiso`) VALUES
 (1, 1, 1),
 (2, 1, 2),
-(3, 1, 3);
+(3, 1, 3),
+(23, 4, 1),
+(24, 4, 2),
+(25, 4, 3),
+(37, 9, 1),
+(38, 9, 2),
+(39, 9, 3),
+(40, 10, 1),
+(41, 10, 2),
+(42, 10, 3),
+(43, 3, 1),
+(44, 3, 2);
 
 --
 -- √çndices para tablas volcadas
@@ -294,25 +340,25 @@ ALTER TABLE `usuario_permiso`
 -- AUTO_INCREMENT de la tabla `alumn`
 --
 ALTER TABLE `alumn`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT de la tabla `alumn_team`
 --
 ALTER TABLE `alumn_team`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT de la tabla `assistance`
 --
 ALTER TABLE `assistance`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT de la tabla `behavior`
 --
 ALTER TABLE `behavior`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `block`
@@ -336,19 +382,19 @@ ALTER TABLE `permiso`
 -- AUTO_INCREMENT de la tabla `team`
 --
 ALTER TABLE `team`
-  MODIFY `idgrupo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `idgrupo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `idusuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `idusuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario_permiso`
 --
 ALTER TABLE `usuario_permiso`
-  MODIFY `idusuario_permiso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `idusuario_permiso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 
 --
 -- Restricciones para tablas volcadas

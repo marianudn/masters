@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 02-09-2020 a las 03:31:57
+-- Tiempo de generación: 03-09-2020 a las 07:46:32
 -- Versión del servidor: 10.4.13-MariaDB
 -- Versión de PHP: 7.4.8
 
@@ -186,7 +186,6 @@ INSERT INTO `team` (`idgrupo`, `nombre`, `favorito`, `idusuario`) VALUES
 (5, 'QUINTO DE PRIMARIA', 1, 1),
 (6, 'SEXTO DE PRIMARIA', 1, 1),
 (10, 'MATEMATICAS', 0, 1),
-(11, 'HAGANLE LA RUEDA A JUANA', 0, 4),
 (12, 'GRUPO DE CARLOS', 0, 3);
 
 -- --------------------------------------------------------
@@ -219,8 +218,8 @@ INSERT INTO `usuario` (`idusuario`, `nombre`, `tipo_usuario`, `tipo_documento`, 
 (1, 'demo', 'ADMINISTRADOR', 'DNI', '72154871', 'Calle los alpes 210', '547821', 'admin@gmail.com', 'Administrador', 'admin', '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918', '1578850202.jpg', 1),
 (3, 'CARLOS', 'PROFESOR', 'IMSS', '465728269875033', '', '', '', '', 'profesor1', 'c5feadda95f15c08186641ec217bfde3ac211298f1912798610ef6532c7ffe1f', '1578849784.jpg', 1),
 (4, 'Juana Perez', 'ALUMNO', 'LICENCIA', '165728279845035', '', '', '', '', 'alumno1', 'b963c40a74d4394ec746188f800b0a25e71ae5dfafa790059a26203d99ea4e2b', '1598842418.jpg', 1),
-(9, 'Ramon Ayala', 'ADMINISTRADOR', 'RFC', 'RAAY443432TY6', 'Valle Imperial SN', '3325678954', 'ramones@gmail.com', 'Tubrother', 'admin2', '1c142b2d01aa34e9a36bde480645a57fd69e14155dacfab5a3f9257b77fdc8d8', '', 1),
-(10, 'Pilar Lopez', 'ALUMNO', 'RFC', 'PILO45345TYN3', 'Hacienda de la Vega SN', '3356432312', 'pilo@gmail.com', 'Jefa', 'alumno2', '84d1a32420eaeca1169e85ff5943773c8fe3e0a782f73759459d107a5b1827e7', '', 1);
+(9, 'Ramon Ayala', 'ADMINISTRADOR', 'RFC', 'RAAY443432TY6', 'Valle Imperial SN', '3325678954', 'ramones@gmail.com', 'Tubrother', 'admin2', '1c142b2d01aa34e9a36bde480645a57fd69e14155dacfab5a3f9257b77fdc8d8', '1599111956.jpg', 1),
+(10, 'Pilar Lopez', 'ALUMNO', 'RFC', 'PILO45345TYN3', 'Hacienda de la Vega SN', '3356432312', 'pilo@gmail.com', 'Jefa', 'alumno2', '1e54d39db2e392723cfb0c37a2ed4f9ad354a5650916e8ec7be6a789c97bf99d', '1599111881.jpg', 1);
 
 -- --------------------------------------------------------
 
@@ -245,14 +244,13 @@ INSERT INTO `usuario_permiso` (`idusuario_permiso`, `idusuario`, `idpermiso`) VA
 (23, 4, 1),
 (24, 4, 2),
 (25, 4, 3),
-(37, 9, 1),
-(38, 9, 2),
-(39, 9, 3),
-(40, 10, 1),
-(41, 10, 2),
-(42, 10, 3),
 (43, 3, 1),
-(44, 3, 2);
+(44, 3, 2),
+(47, 10, 1),
+(48, 10, 2),
+(49, 9, 1),
+(50, 9, 2),
+(51, 9, 3);
 
 --
 -- Índices para tablas volcadas
@@ -394,7 +392,7 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `usuario_permiso`
 --
 ALTER TABLE `usuario_permiso`
-  MODIFY `idusuario_permiso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `idusuario_permiso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 
 --
 -- Restricciones para tablas volcadas

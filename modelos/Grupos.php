@@ -54,6 +54,12 @@ public function listar_profesor($nombre){
 	return ejecutarConsulta($sql);
 }
 
+//listar registros alumnos
+public function listar_cursos_alumno($idusuario){
+	$sql="SELECT g.idgrupo,g.nombre,g.idusuario,Maestro.Docente as usuario FROM team g INNER JOIN alumnos_inscritos al ON g.idgrupo = al.idgrupo INNER JOIN (SELECT g.idgrupo,u.nombre as Docente FROM team g INNER JOIN usuario u ON g.idusuario= u.idusuario ) as Maestro on Maestro.idgrupo = g.idgrupo WHERE al.idusuario='$idusuario'";
+	return ejecutarConsulta($sql);
+}
+
 
 public function ventacabecera($idgrupo){
 	$sql= "SELECT g.idgrupo, g.idcliente, p.nombre AS cliente, p.direccion, p.tipo_documento, p.num_documento, p.email, p.telefono, g.idusuario, u.nombre AS usuario, g.tipo_comprobante, g.serie_comprobante, g.num_comprobante, DATE(g.fecha_hora) AS fecha, g.impuesto, g.total_venta FROM team g INNER JOIN persona p ON g.idcliente=p.idpersona INNER JOIN usuario u ON g.idusuario=u.idusuario WHERE g.idgrupo='$idgrupo'";

@@ -37,9 +37,9 @@ switch ($_GET["op"]) {
     	if ($_SESSION['tipo_usuario']=='ADMINISTRADOR') {
     		$rspta=$grupos->listar();
     	}elseif ($_SESSION['tipo_usuario']=='ALUMNO'){
-    		$rspta=$grupos->listar();
+    		$rspta=$grupos->listar_cursos_alumno($_SESSION['idusuario']);
     		}elseif ($_SESSION['tipo_usuario']=='PROFESOR'){
-    		$rspta=$grupos->listar_profesor($_SESSION['nombre']);
+    			$rspta=$grupos->listar_profesor($_SESSION['nombre']);
     		}
 		
 		$data=Array();

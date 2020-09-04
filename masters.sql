@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 03-09-2020 a las 07:46:32
+-- Tiempo de generación: 04-09-2020 a las 20:27:55
 -- Versión del servidor: 10.4.13-MariaDB
 -- Versión de PHP: 7.4.8
 
@@ -171,22 +171,28 @@ CREATE TABLE `team` (
   `idgrupo` int(11) NOT NULL,
   `nombre` varchar(50) COLLATE utf8_bin NOT NULL,
   `favorito` tinyint(1) NOT NULL,
-  `idusuario` int(11) NOT NULL
+  `idusuario` int(11) NOT NULL,
+  `codigo_unico` varchar(10) COLLATE utf8_bin NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- Volcado de datos para la tabla `team`
 --
 
-INSERT INTO `team` (`idgrupo`, `nombre`, `favorito`, `idusuario`) VALUES
-(1, 'PRIMERO DE PRIMARIA', 1, 1),
-(2, 'SEGUNDO DE PRIMARIA', 1, 1),
-(3, 'TERCERO DE PRIMARIA', 1, 1),
-(4, 'CUARTO DE PRIMARIA', 1, 1),
-(5, 'QUINTO DE PRIMARIA', 1, 1),
-(6, 'SEXTO DE PRIMARIA', 1, 1),
-(10, 'MATEMATICAS', 0, 1),
-(12, 'GRUPO DE CARLOS', 0, 3);
+INSERT INTO `team` (`idgrupo`, `nombre`, `favorito`, `idusuario`, `codigo_unico`) VALUES
+(1, 'PRIMERO DE PRIMARIA', 1, 1, 'f6yf4sf4'),
+(2, 'SEGUNDO DE PRIMARIA', 1, 1, 'i4sfddf4'),
+(3, 'TERCERO DE PRIMARIA', 1, 1, 'p6pf4df5'),
+(4, 'CUARTO DE PRIMARIA', 1, 1, 'b57f4f4d'),
+(5, 'QUINTO DE PRIMARIA', 1, 1, 'z6ef4d6w'),
+(6, 'SEXTO DE PRIMARIA', 1, 1, 'l6784xzo'),
+(10, 'MATEMATICAS', 0, 1, 'p47d2soy'),
+(12, 'GRUPO DE CARLOS', 0, 3, 'm68f9dfd'),
+(14, 'FISICA CUANTICA', 0, 1, 'e45tyx4y'),
+(15, 'GRUPO DE CIENCIAS', 0, 3, 'd1n7zcfx'),
+(16, 'CLASE DE CUMBIA', 0, 3, 'vatmy9ne'),
+(18, 'GRUPO DE CASAS', 0, 3, '23klve6t'),
+(20, 'GRUPO ADMIN', 0, 1, 'wc4urpnm');
 
 -- --------------------------------------------------------
 
@@ -246,11 +252,11 @@ INSERT INTO `usuario_permiso` (`idusuario_permiso`, `idusuario`, `idpermiso`) VA
 (25, 4, 3),
 (43, 3, 1),
 (44, 3, 2),
-(47, 10, 1),
-(48, 10, 2),
 (49, 9, 1),
 (50, 9, 2),
-(51, 9, 3);
+(51, 9, 3),
+(52, 10, 1),
+(53, 10, 2);
 
 --
 -- Índices para tablas volcadas
@@ -380,7 +386,7 @@ ALTER TABLE `permiso`
 -- AUTO_INCREMENT de la tabla `team`
 --
 ALTER TABLE `team`
-  MODIFY `idgrupo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `idgrupo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario`
@@ -392,7 +398,7 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `usuario_permiso`
 --
 ALTER TABLE `usuario_permiso`
-  MODIFY `idusuario_permiso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
+  MODIFY `idusuario_permiso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
 
 --
 -- Restricciones para tablas volcadas

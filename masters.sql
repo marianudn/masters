@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 04-09-2020 a las 20:27:55
+-- Tiempo de generación: 04-09-2020 a las 23:40:48
 -- Versión del servidor: 10.4.13-MariaDB
 -- Versión de PHP: 7.4.8
 
@@ -54,6 +54,32 @@ CREATE TABLE `alumn` (
 
 INSERT INTO `alumn` (`id`, `image`, `name`, `lastname`, `email`, `address`, `phone`, `c1_fullname`, `c1_address`, `c1_phone`, `c1_note`, `c2_fullname`, `c2_address`, `c2_phone`, `c2_note`, `is_active`, `created_at`, `user_id`) VALUES
 (28, '', 'JUAN', 'SANCHEZ ALVAREZ', 'marianasalinas88@hotmail.com', 'MELODIA 2324', '3322528678', '', '', '', '', NULL, NULL, NULL, NULL, 1, NULL, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `alumnos_inscritos`
+--
+
+CREATE TABLE `alumnos_inscritos` (
+  `idgrupo` int(11) NOT NULL,
+  `idusuario` int(11) NOT NULL,
+  `activo` tinyint(4) NOT NULL DEFAULT 1
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `alumnos_inscritos`
+--
+
+INSERT INTO `alumnos_inscritos` (`idgrupo`, `idusuario`, `activo`) VALUES
+(6, 4, 1),
+(6, 10, 1),
+(12, 10, 1),
+(1, 4, 1),
+(2, 10, 1),
+(16, 10, 1),
+(4, 10, 1),
+(5, 10, 1);
 
 -- --------------------------------------------------------
 
@@ -270,6 +296,13 @@ ALTER TABLE `alumn`
   ADD KEY `user_id` (`user_id`) USING BTREE;
 
 --
+-- Indices de la tabla `alumnos_inscritos`
+--
+ALTER TABLE `alumnos_inscritos`
+  ADD KEY `idgrupo` (`idgrupo`),
+  ADD KEY `idusuario` (`idusuario`);
+
+--
 -- Indices de la tabla `alumn_team`
 --
 ALTER TABLE `alumn_team`
@@ -409,6 +442,13 @@ ALTER TABLE `usuario_permiso`
 --
 ALTER TABLE `alumn`
   ADD CONSTRAINT `alumn_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `usuario` (`idusuario`);
+
+--
+-- Filtros para la tabla `alumnos_inscritos`
+--
+ALTER TABLE `alumnos_inscritos`
+  ADD CONSTRAINT `idgrupo` FOREIGN KEY (`idgrupo`) REFERENCES `team` (`idgrupo`),
+  ADD CONSTRAINT `idusuario` FOREIGN KEY (`idusuario`) REFERENCES `usuario` (`idusuario`);
 
 --
 -- Filtros para la tabla `alumn_team`

@@ -71,7 +71,7 @@ if ($_SESSION['tipo_usuario']=='ALUMNO') {
     <div class="form-group col-lg-6 col-md-6 col-xs-12">
       <label for="">Clave de grupo a unirse</label>
       <input class="form-control" type="hidden" name="idgrupo" id="idgrupo">
-      <input class="form-control" type="text" name="nombre" id="nombre" maxlength="50" placeholder="Clave" onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value" required>
+      <input class="form-control" type="text" name="nombre" id="nombre" maxlength="50" placeholder="Clave" required>
     </div>
         <div class="form-group col-lg-12 col-md-12 col-xs-12">
     </div>

@@ -71,6 +71,11 @@ public function cantidadgrupos($idusuario){
 	return ejecutarConsulta($sql);
 }
 
+public function cantidadgruposalumno($idusuario){
+	$sql="SELECT g.idgrupo,g.nombre,g.idusuario as usuario FROM team g INNER JOIN alumnos_inscritos al ON g.idgrupo = al.idgrupo INNER JOIN (SELECT g.idgrupo,u.nombre as Docente FROM team g INNER JOIN usuario u ON g.idusuario= u.idusuario ) as Maestro on Maestro.idgrupo = g.idgrupo WHERE al.idusuario='$idusuario'";
+	return ejecutarConsulta($sql);
+}
+
 public function cantidadarticulos(){
 	$sql="SELECT COUNT(*) totalar FROM articulo WHERE condicion=1";
 	return ejecutarConsulta($sql);

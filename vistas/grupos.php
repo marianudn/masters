@@ -20,12 +20,29 @@ if ($_SESSION['grupos']==1) {
       <div class="row">
         <div class="col-md-12">
       <div class="box">
+<?php
+if ($_SESSION['tipo_usuario']=='ALUMNO') {
+?>  
+<div class="box-header with-border">
+  <h1 class="box-title"><i class="fa fa-th-large"></i> Grupos <button class="btn btn-success" id="btnagregar" onclick="mostrarform(true)"><i class="fa fa-plus-circle"></i> Unirse a un grupo</button></h1>
+  <div class="box-tools pull-right">
+    
+  </div>
+</div>
+
+<?php
+} else{
+?>  
 <div class="box-header with-border">
   <h1 class="box-title"><i class="fa fa-th-large"></i> Grupos <button class="btn btn-success" id="btnagregar" onclick="mostrarform(true)"><i class="fa fa-plus-circle"></i> Agregar</button></h1>
   <div class="box-tools pull-right">
     
   </div>
 </div>
+
+<?php
+}
+?>  
 <!--box-header-->
 <!--centro-->
 <div class="panel-body table-responsive" id="listadoregistros">
@@ -34,6 +51,7 @@ if ($_SESSION['grupos']==1) {
               <th>Opciones</th>
               <th>Nombre</th>
               <th>Docente</th>
+              <th>Codigo Grupo</th>
     </thead>
     <tbody>
     </tbody>
@@ -41,9 +59,39 @@ if ($_SESSION['grupos']==1) {
               <th>Opciones</th>
               <th>Nombre</th>
               <th>Docente</th>
+              <th>Codigo Grupo</th>
     </tfoot>   
   </table>
 </div>
+<?php
+if ($_SESSION['tipo_usuario']=='ALUMNO') {
+?>  
+<div class="panel-body" style="height: 400px;" id="formularioregistros">
+  <form action="" name="formulario" id="formulario" method="POST">
+    <div class="form-group col-lg-6 col-md-6 col-xs-12">
+      <label for="">Clave de grupo a unirse</label>
+      <input class="form-control" type="hidden" name="idgrupo" id="idgrupo">
+      <input class="form-control" type="text" name="nombre" id="nombre" maxlength="50" placeholder="Clave" onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value" required>
+    </div>
+        <div class="form-group col-lg-12 col-md-12 col-xs-12">
+    </div>
+  <div class="form-group col-lg-4 col-md-4 col-xs-6">
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox" name="favorito" id="favorito" value="1"> Favorito
+                  </label>
+                </div>
+                </div>
+
+    <div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
+      <button class="btn btn-primary" type="submit" id="btnGuardar"><i class="fa fa-save"></i>  Guardar</button>
+      <button class="btn btn-danger" onclick="cancelarform()" type="button" id="btnCancelar"><i class="fa fa-arrow-circle-left"></i> Cancelar</button>
+    </div>
+  </form>
+</div>
+<?php
+}else {
+?>  
 <div class="panel-body" style="height: 400px;" id="formularioregistros">
   <form action="" name="formulario" id="formulario" method="POST">
     <div class="form-group col-lg-6 col-md-6 col-xs-12">
@@ -67,6 +115,9 @@ if ($_SESSION['grupos']==1) {
     </div>
   </form>
 </div>
+<?php
+}
+?>  
 <!--fin centro-->
       </div>
       </div>

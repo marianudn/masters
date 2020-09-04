@@ -28,7 +28,12 @@ $user_id=$_SESSION["idusuario"];
         <div class="col-md-12">
       <div class="box">
 <div class="panel-body">
-<?php $rspta=$consulta->cantidadgrupos($user_id);
+<?php 
+if ($_SESSION['tipo_usuario']=='ALUMNO') {
+  $rspta=$consulta->cantidadgruposalumno($user_id);
+}else {
+  $rspta=$consulta->cantidadgrupos($user_id);
+}
 $colores = array("box box-success direct-chat direct-chat-success bg-green", "box box-primary direct-chat direct-chat-primary bg-aqua", "box box-warning direct-chat direct-chat-warning bg-yellow", "box box-danger direct-chat direct-chat-danger bg-red");
       while ($reg=$rspta->fetch_object()) {
         $idgrupo=$reg->idgrupo;

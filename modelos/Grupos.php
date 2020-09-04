@@ -10,13 +10,23 @@ public function __construct(){
 }
 
 //metodo insertar registro
-public function insertar($nombre,$favorito,$idusuario){
-	$sql="INSERT INTO team (nombre,favorito,idusuario) VALUES ('$nombre','$favorito','$idusuario')";
+public function insertar($nombre,$favorito,$idusuario,$codigo_unico){
+	$sql="INSERT INTO team (nombre,favorito,idusuario,codigo_unico) VALUES ('$nombre','$favorito','$idusuario','$codigo_unico')";
+	return ejecutarConsulta($sql);
+}
+//obtener id de grupo
+public function obtener_grupo($codigo_unico){
+	$sql="SELECT idgrupo FROM team WHERE codigo_unico = '$codigo_unico'";
+	return ejecutarConsulta($sql);
+}
+//metodo insertar registro en alumnos inscritos
+public function insertar_alumno($idgrupo,$idusuario){
+	$sql="INSERT INTO alumnos_inscritos(idgrupo, idusuario, activo) VALUES ('$idgrupo','$idusuario',1)";
 	return ejecutarConsulta($sql);
 }
 
-public function editar($idgrupo,$nombre,$favorito,$idusuario){
-	$sql="UPDATE team SET nombre='$nombre',favorito='$favorito',idusuario='$idusuario'  
+public function editar($idgrupo,$nombre,$favorito,$idusuario,$codigo_unico){
+	$sql="UPDATE team SET nombre='$nombre',favorito='$favorito',idusuario='$idusuario',codigo_unico ='$codigo_unico'  
 	WHERE idgrupo='$idgrupo'";
 	return ejecutarConsulta($sql);
 }
@@ -44,19 +54,19 @@ public function listarDetalle($idgrupo){
 
 //listar registros
 public function listar(){
-	$sql="SELECT g.idgrupo,g.nombre,u.idusuario,u.nombre as usuario FROM team g  INNER JOIN usuario u ON g.idusuario=u.idusuario ORDER BY g.idgrupo DESC";
+	$sql="SELECT g.idgrupo,g.nombre,u.idusuario,u.nombre as usuario,g.codigo_unico FROM team g  INNER JOIN usuario u ON g.idusuario=u.idusuario ORDER BY g.idgrupo DESC";
 	return ejecutarConsulta($sql);
 }
 
 //listar registros profesores
 public function listar_profesor($nombre){
-	$sql="SELECT g.idgrupo,g.nombre,u.idusuario,u.nombre as usuario FROM team g  INNER JOIN usuario u ON g.idusuario=u.idusuario  WHERE u.nombre ='$nombre'";
+	$sql="SELECT g.idgrupo,g.nombre,u.idusuario,u.nombre as usuario,g.codigo_unico FROM team g  INNER JOIN usuario u ON g.idusuario=u.idusuario  WHERE u.nombre ='$nombre'";
 	return ejecutarConsulta($sql);
 }
 
 //listar registros alumnos
 public function listar_cursos_alumno($idusuario){
-	$sql="SELECT g.idgrupo,g.nombre,g.idusuario,Maestro.Docente as usuario FROM team g INNER JOIN alumnos_inscritos al ON g.idgrupo = al.idgrupo INNER JOIN (SELECT g.idgrupo,u.nombre as Docente FROM team g INNER JOIN usuario u ON g.idusuario= u.idusuario ) as Maestro on Maestro.idgrupo = g.idgrupo WHERE al.idusuario='$idusuario'";
+	$sql="SELECT g.idgrupo,g.nombre,g.idusuario,Maestro.Docente as usuario,g.codigo_unico FROM team g INNER JOIN alumnos_inscritos al ON g.idgrupo = al.idgrupo INNER JOIN (SELECT g.idgrupo,u.nombre as Docente FROM team g INNER JOIN usuario u ON g.idusuario= u.idusuario ) as Maestro on Maestro.idgrupo = g.idgrupo WHERE al.idusuario='$idusuario'";
 	return ejecutarConsulta($sql);
 }
 

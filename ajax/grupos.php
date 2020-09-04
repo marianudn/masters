@@ -11,13 +11,30 @@ $nombre=isset($_POST["nombre"])? limpiarCadena($_POST["nombre"]):"";
 $favorito=isset($_POST["favorito"])? 1 :0;
 
 
+
 switch ($_GET["op"]) {
 	case 'guardaryeditar':
 	if (empty($idgrupo)) {
-		$rspta=$grupos->insertar($nombre,$favorito,$idusuario);
-		echo $rspta ? "Datos registrados correctamente" : "No se pudo registrar los datos";
+		if ($_SESSION["tipo_usuario"]!="ALUMNO"){
+			$semilla = '0123456789abcdefghijklmnopqrstuvwxyz';
+			$codigounico = substr( str_shuffle( $semilla ), 0, 8 );
+			$rspta=$grupos->insertar($nombre,$favorito,$idusuario,$codigounico);
+			echo $rspta ? "Datos registrados correctamente" : "No se pudo registrar los datos";
+		}else {
+			$query=$grupos->obtener_grupo($nombre);
+			$row = mysqli_fetch_array($query);
+    		$idgrupoquery=$row['idgrupo'];
+    		
+    		if($idgrupoquery!=null)
+    		{
+				$rspta=$grupos->insertar_alumno($idgrupoquery,$idusuario);
+				echo $rspta ? "Alumno agregado correctamente a grupo" : "No se pudo agegar a grupo";
+			}else{
+				echo $rspta = "No se pudo agegar a grupo";
+			}
+		}
 	}else{
-         $rspta=$grupos->editar($idgrupo,$nombre,$favorito,$idusuario);
+         $rspta=$grupos->editar($idgrupo,$nombre,$favorito,$idusuario,$codigounico);
 		echo $rspta ? "Datos actualizados correctamente" : "No se pudo actualizar los datos";
 	}
 		break;
@@ -51,7 +68,8 @@ switch ($_GET["op"]) {
 
 			"0"=>'<button class="btn btn-warning btn-xs" onclick="mostrar('.$reg->idgrupo.')"><i class="fa fa-pencil"></i></button>'.' '.'<button class="btn btn-danger btn-xs" onclick="desactivar('.$reg->idgrupo.')"><i class="fa fa-close"></i></button>',
             "1"=>$reg->nombre,
-            "2"=>$reg->usuario
+            "2"=>$reg->usuario,
+            "3"=>$reg->codigo_unico,
               );
 		}
 		$results=array( 

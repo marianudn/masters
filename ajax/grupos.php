@@ -18,8 +18,21 @@ switch ($_GET["op"]) {
 		if ($_SESSION["tipo_usuario"]!="ALUMNO"){
 			$semilla = '0123456789abcdefghijklmnopqrstuvwxyz';
 			$codigounico = substr( str_shuffle( $semilla ), 0, 8 );
-			$rspta=$grupos->insertar($nombre,$favorito,$idusuario,$codigounico);
-			echo $rspta ? "Datos registrados correctamente" : "No se pudo registrar los datos";
+			//valida que el codigo unico no exista ya en la BD
+			$grupo_valido=false;
+			while ($grupo_valido==false){
+				$query=$grupos->obtener_grupo($codigounico);
+				$row = mysqli_fetch_array($query);
+    			$idgrupoquery=$row['idgrupo'];
+    			if($idgrupoquery==null)
+    			{
+					$rspta=$grupos->insertar($nombre,$favorito,$idusuario,$codigounico);
+					echo $rspta ? "Datos registrados correctamente" : "No se pudo registrar los datos";
+					$grupo_valido=true;
+				}
+
+			}
+			
 		}else {
 			$query=$grupos->obtener_grupo($nombre);
 			$row = mysqli_fetch_array($query);
